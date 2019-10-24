@@ -2,9 +2,12 @@
   "name": "electron-quick-start",
   "version": "1.0.0",
   "description": "A minimal Electron application",
-  "main": "main.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder build --x64",
+    "build:mac": "npm run build --mac",
+    "build:win": "npm run build --win"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -17,6 +20,18 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^7.0.0"
+    "electron": "^6.0.0",
+    "electron-builder": "^21.2.0"
+  },
+  "build": {
+    "appId": "com.example.app",
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/logo.png"
+    },
+    "win": {
+      "target": "msi",
+      "icon": "assets/logo.png"
+    }
   }
 }
