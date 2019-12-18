@@ -44,6 +44,7 @@ electron fold：
   ...
 
 ```
+
 electron目录(暂定为electron的开发目录),electron的[官方文档](https://electronjs.org/docs/tutorial/quick-start)
 
 ```bash
@@ -57,6 +58,7 @@ electron目录(暂定为electron的开发目录),electron的[官方文档](https
 ```
 
 #### vue
+
 Same as Vue development mode
 
 
@@ -89,10 +91,15 @@ more information [electron-builder](https://www.electron.build/configuration/con
 ### Dependencies 部分依赖
 
 1. `electron`: electron app;
+
 2. `electron-builder`: pack the electron app;
+
 3. `vue`: `vue`, `vue-router`.etc
+
 4. `webpack`: develop and build the vue codes;
+
 ...
+
 show `package.json`
 
 
@@ -109,7 +116,9 @@ This is a minimal Electron application based on the [Quick Start Guide](https://
 A basic Electron application needs just these files:
 
 - `package.json` - Points to the app's main file and lists its details and dependencies.
+
 - `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
+
 - `index.html` - A web page to render. This is the app's **renderer process**.
 
 You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
@@ -121,10 +130,13 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 ```bash
 # Clone this repository
 git clone https://github.com/electron/electron-quick-start
+
 # Go into the repository
 cd electron-quick-start
+
 # Install dependencies
 npm install
+
 # Run the app
 npm start
 ```
