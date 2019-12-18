@@ -98,6 +98,7 @@ show `package.json`
 
 <hr>
 下面是`electron-quick-start`的README
+
 # electron quick start
 **Clone and run for a quick way to see Electron in action.**
 
