@@ -1,5 +1,104 @@
-# electron-quick-start
+## electron-vue-tpl
+The boilerplate for making electron applications built with vue-cli3 scaffolding and [electron-quick-start](https://github.com/electron/electron-quick-start)
 
+一个`electron`模板，使用了`vue-cli3`脚手架搭建。
+
+<div align="center">
+  <br>
+    <img width="512" src="/electron/icon/electron-vue-tpl.png" alt="electron-vue-tpl">
+    <br>
+  <br>
+</div>
+
+### Install
+
+```bash
+# Clone the repository
+git clone https://github.com/lichao-eric/electron-vue-tpl.git
+
+# Go into the repository
+cd electron-vue-tpl
+
+# Install dependencies
+npm install
+
+# Run the app
+npm run dev
+
+# Pack the app, windows-msi, mac-dmg
+npm run pack
+```
+
+### Develop
+
+#### electron
+
+electron fold：
+
+```bash
+|-- electron
+  |-- config                              # electron mainwindow configs
+  |-- icon
+      |-- electron-vue-tpl.png           # app icon, config package.json
+  |-- app.js                             # main window
+  ...
+
+```
+electron目录(暂定为electron的开发目录),electron的[官方文档](https://electronjs.org/docs/tutorial/quick-start)
+
+```bash
+|-- electron
+  |-- config                              # mainWindow
+  |-- icon
+      |-- electron-vue-tpl.png           # 应用icon, 可以在package.json中配置
+  |-- app.js                             # mainWindow的代码
+  ...
+
+```
+
+#### vue
+Same as Vue development mode
+
+
+### Pack Config 打包构建配置
+
+```json
+  "build": {
+    "productName": "electron-vue-tpl",
+    "appId": "com.electron.vue.tpl.app",
+    "mac": {
+      "target": "dmg",
+      "icon": "electron/icon/electron-vue-tpl.png"
+    },
+    "win": {
+      "target": "msi",
+      "icon": "electron/icon/electron-vue-tpl.png"
+    }
+  }
+```
+
+`productName`: app name 应用名称
+
+`icon`: app icon 应用icon
+
+more information [electron-builder](https://www.electron.build/configuration/configuration)
+
+更多打包配置项，可以查看[electron-builder文档](https://www.electron.build/configuration/configuration)
+
+
+### Dependencies 部分依赖
+
+1. `electron`: electron app;
+2. `electron-builder`: pack the electron app;
+3. `vue`: `vue`, `vue-router`.etc
+4. `webpack`: develop and build the vue codes;
+...
+show `package.json`
+
+
+<hr>
+下面是`electron-quick-start`的README
+# electron quick start
 **Clone and run for a quick way to see Electron in action.**
 
 This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
