@@ -1,6 +1,6 @@
 {
   "name": "electron-vue-tpl",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A Vue-Electron application, built with vue-cli3。",
   "main": "electron/app.js",
   "homepage": "./",
@@ -78,6 +78,9 @@
     "hooks": {
       "commit-msg": "validate-commit-msg"
     }
+  },
+  "development": {
+    "port": "7878"
   },
   "build": {
     "productName": "electron-vue-tpl",

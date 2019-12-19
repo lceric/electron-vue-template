@@ -1,18 +1,17 @@
-const path = require('path');
-// const fs = require('fs');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const path = require('path')
+const packageJSON = require('./package.json')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
-var ProgressBarPlugin = require('progress-bar-webpack-plugin');
-// const chalk = require('chalk');
-// const webpack = require('webpack')
+  .BundleAnalyzerPlugin
+var ProgressBarPlugin = require('progress-bar-webpack-plugin')
 function resolve(dir) {
-  return path.join(__dirname, dir);
+  return path.join(__dirname, dir)
 }
 
-var startElectron = require('./electron/utils/startElectron');
-const target = ''; // 环境配置
-const port = '7878'; // 端口
+var startElectron = require('./electron/handlers/startElectron')
+
+const port = packageJSON.development.port
+
 module.exports = {
   lintOnSave: false,
   publicPath: './',
@@ -24,8 +23,9 @@ module.exports = {
     port,
     // disableHostCheck: true,
     after(app, server, compiler) {
-      startElectron(compiler);
+      startElectron(compiler)
     }
+    // 配置代理
     // proxy: {
     // '/api': {
     //   target,
@@ -37,8 +37,18 @@ module.exports = {
     // }
     // }
   },
+  css: {
+    loaderOptions: {
+      // pass options to sass-loader
+      scss: {
+        implementation: require('dart-sass')
+        // prependData: `@import "~src/styles/var.scss";`
+      }
+    }
+  },
   chainWebpack: config => {
     config.resolve.alias // alias
+      .set('@', resolve('electron'))
       .set('src', resolve('src'))
       .set('assets', resolve('src/assets'))
       .set('components', resolve('src/components'))
@@ -52,31 +62,23 @@ module.exports = {
       .end()
       .end() // 回退
       .stats({ timings: true }) // stats
-      // .externals({
-      //   // externals
-      //   vue: 'Vue',
-      //   vuex: 'Vuex',
-      //   'vue-router': 'VueRouter',
-      //   'element-ui': 'ELEMENT',
-      //   axios: 'axios'
-      // })
       .plugin('progress-bar-webpack-plugin') // progress-bar-webpack-plugin
       .use(ProgressBarPlugin)
       .end()
       .plugins.delete('preload') // delete preload
-      .delete('prefetch'); // delete prefetch
+      .delete('prefetch') // delete prefetch
     // 开发模式
-    if (process.env.NODE_ENV !== 'production') {
-    }
+    // if (process.env.NODE_ENV !== 'production') {
+    // }
     if (process.env.npm_config_anylize) {
       // 如果需要进行模块分析，使用--anylize
-      config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin);
+      config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin)
     }
   },
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production') {
       // mutate config for production...
-      config.plugins = config.plugins.concat([new HardSourceWebpackPlugin()]);
+      config.plugins = config.plugins.concat([new HardSourceWebpackPlugin()])
     }
   }
-};
+}
