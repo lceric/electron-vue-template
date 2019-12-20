@@ -31,7 +31,8 @@ function createWindow() {
     useContentSize: true,
     backgroundColor: '#fff',
     transparent: true,
-    icon: path.join(__dirname, '../assets/logo.png'),
+    // icon (NativeImage | String) (可选) - 窗口的图标. 在 Windows 上推荐使用 ICO 图标来获得最佳的视觉效果, 默认使用可执行文件的图标.
+    // icon: path.join(__dirname, './icon/electron-vue-template.png'),
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,

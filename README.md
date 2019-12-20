@@ -1,11 +1,11 @@
-## electron-vue-tpl
-The boilerplate for making electron applications built with vue-cli3 scaffolding and [electron-quick-start](https://github.com/electron/electron-quick-start)
+## electron-vue-template
+The boilerplate for making electron applications built with vue-cli3 scaffolding。
 
 一个`electron`模板，使用了`vue-cli3`脚手架搭建。
 
 <div align="center">
   <br>
-    <img width="512" src="/electron/icon/electron-vue-tpl.png" alt="electron-vue-tpl">
+    <img width="512" src="/electron/icon/electron-vue-template.png" alt="electron-vue-template">
     <br>
   <br>
 </div>
@@ -14,10 +14,10 @@ The boilerplate for making electron applications built with vue-cli3 scaffolding
 
 ```bash
 # Clone the repository
-git clone https://github.com/lichao-eric/electron-vue-tpl.git
+git clone https://github.com/lichao-eric/electron-vue-template.git
 
 # Go into the repository
-cd electron-vue-tpl
+cd electron-vue-template
 
 # Install dependencies
 npm install
@@ -39,7 +39,7 @@ electron fold：
 |-- electron
   |-- config                              # electron mainwindow configs
   |-- icon
-      |-- electron-vue-tpl.png           # app icon, config package.json
+      |-- electron-vue-template.png           # app icon, config package.json
   |-- app.js                             # main window
   ...
 
@@ -51,7 +51,7 @@ electron目录(暂定为electron的开发目录),electron的[官方文档](https
 |-- electron
   |-- config                              # mainWindow
   |-- icon
-      |-- electron-vue-tpl.png           # 应用icon, 可以在package.json中配置
+      |-- electron-vue-template.png           # 应用icon, 可以在package.json中配置
   |-- app.js                             # mainWindow的代码
   ...
 
@@ -61,20 +61,22 @@ electron目录(暂定为electron的开发目录),electron的[官方文档](https
 
 Same as Vue development mode
 
+vue怎么开发，这个就怎么来，如果是electron上，前往[electron文档](https://electronjs.org/docs)
+
 
 ### Pack Config 打包构建配置
 
 ```json
   "build": {
-    "productName": "electron-vue-tpl",
-    "appId": "com.electron.vue.tpl.app",
+    "productName": "electron-vue-template",
+    "appId": "com.electron.vue.template.app",
     "mac": {
       "target": "dmg",
-      "icon": "electron/icon/electron-vue-tpl.png"
+      "icon": "electron/icon/electron-vue-template.png"
     },
     "win": {
       "target": "msi",
-      "icon": "electron/icon/electron-vue-tpl.png"
+      "icon": "electron/icon/electron-vue-template.png"
     }
   }
 ```
@@ -88,7 +90,48 @@ more information [electron-builder](https://www.electron.build/configuration/con
 更多打包配置项，可以查看[electron-builder文档](https://www.electron.build/configuration/configuration)
 
 
+## 补充说明
+
+#### 迁移已有的vue项目到该项目，打包后页面一直空白，可能是什么导致的？
+
+可以本地直接打开，如果资源加载不报错，可以看一下路由是不是使用了`history`, 如果是，可以改成`hash`试一下
+
+#### 该工程的流程描述
+
+##### 1. 开发模式
+
+> 主要点就是webpack启动的vue工程与electron的结合
+
+简单来说就是`webpack启动vue工程 -> 在devServer的钩子中启动electron`，热更新代码
+
+##### 2. 构建过程
+
+> electron打入静态页面及资源文件
+
+`webpack打包生成静态资源目录webroot -> electron打包引用webroot目录`，生成dmg/msi安装包
+
+#### 改了`electron/*`目录文件不生效?
+
+暂未支持该目录热更新，可以通过watch该目录，重新启动electron来实现
+
+#### vue工程启动端口设定
+
+在`package.json`中有`development`模块，可以看到`port`，配置一下重启即可。
+
+
+#### 怎么制定打包后的安装包文件名
+
+现安装包的文件命名规则为： package.json中`productName+versions版本号`
+
+#### 如何配置打包后的文件类型
+
+工程打包使用的是`electron-builder`,默认配置`msi`,`dmg`。
+
+如果需要配置`linux`平台与安装包可以查看[electron-builder文档](https://www.electron.build/configuration/configuration)
+
 ### Dependencies 部分依赖
+
+在vue-cli3脚手架基础上，与[electron-quick-start](https://github.com/electron/electron-quick-start)结合构建。
 
 1. `electron`: electron app;
 
@@ -102,46 +145,7 @@ more information [electron-builder](https://www.electron.build/configuration/con
 
 show `package.json`
 
-
 <hr>
-下面是`electron-quick-start`的README
-
-# electron quick start
-**Clone and run for a quick way to see Electron in action.**
-
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
-
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
-
-A basic Electron application needs just these files:
-
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-
-- `index.html` - A web page to render. This is the app's **renderer process**.
-
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-
-# Go into the repository
-cd electron-quick-start
-
-# Install dependencies
-npm install
-
-# Run the app
-npm start
-```
-
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
 ## Resources for Learning Electron
 

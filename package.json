@@ -1,5 +1,5 @@
 {
-  "name": "electron-vue-tpl",
+  "name": "electron-vue-template",
   "version": "0.1.0",
   "description": "A Vue-Electron application, built with vue-cli3。",
   "main": "electron/app.js",
@@ -16,7 +16,7 @@
     "commit": "git-cz",
     "precommit": "lint-staged"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/lichao-eric/electron-vue-template",
   "keywords": [
     "Electron",
     "quick",
@@ -83,15 +83,15 @@
     "port": "7878"
   },
   "build": {
-    "productName": "electron-vue-tpl",
-    "appId": "com.electron.vue.tpl.app",
+    "productName": "electron-vue-template",
+    "appId": "com.electron.vue.template.app",
     "mac": {
       "target": "dmg",
-      "icon": "electron/icon/electron-vue-tpl.png"
+      "icon": "electron/icon/electron-vue-template.png"
     },
     "win": {
       "target": "msi",
-      "icon": "electron/icon/electron-vue-tpl.png"
+      "icon": "electron/icon/electron-vue-template.png"
     }
   }
 }
