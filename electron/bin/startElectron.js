@@ -1,4 +1,7 @@
 var { spawn } = require('child_process')
+
+var isWinPlatform = /^win/.test(process.platform)
+var npmCmd = isWinPlatform ? 'npm.cmd' : 'npm'
 var isRendered = false
 
 function startElectron(compiler, cb) {
@@ -7,7 +10,7 @@ function startElectron(compiler, cb) {
     console.log('/-------------run electron-------------/')
     // if (process.env.NODE_ENV === 'production') return;
     if (isRendered) return
-    var ls = spawn('npm', ['run', 'start:electron'], { stdio: 'inherit' })
+    var ls = spawn(npmCmd, ['run', 'start:electron'], { stdio: 'inherit' })
     isRendered = true
     cb && cb instanceof Function && cb()
     console.log('/-------------all of ready-------------/')
