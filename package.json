@@ -25,7 +25,7 @@
     "demo"
   ],
   "author": "Eric Lee",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "dependencies": {
     "core-js": "^3.4.3",
     "vue": "^2.6.10",
