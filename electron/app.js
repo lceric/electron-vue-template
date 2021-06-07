@@ -2,23 +2,25 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const packageJSON = require('../package.json')
-const port = packageJSON.development.port
-require('./handlers/ipcMonitor') /* 进程消息监听 */
-// import './handlers/logs' /* 日志设置 */
-const { registerGlobalDevToolsShortCut } = require('./handlers/utils')
-// const config = require('./config');
+const { WINDOW_SIZE } = require('./const/config')
+
+// import './core/logs' /* 日志设置 */
+const { registerGlobalDevToolsShortCut } = require('./helper/window')
+
+require('./core/ipc') /* 进程消息监听 */
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+const port = packageJSON.development.port
 const isDev = process.env.NODE_ENV === 'development'
+const [width, height] = WINDOW_SIZE.LOGIN_SIZE
 const webUrl = isDev
   ? `http://localhost:${port}`
   : `file://${__dirname}/../webroot/index.html`
 // const webUrl = `http://localhost:7878`;
-const { WINDOW_SIZE } = require('./handlers/config')
-const [width, height] = WINDOW_SIZE.LOGIN_SIZE
+
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -36,7 +38,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
-      preload: path.join(__dirname, './renderer.js')
+      preload: path.join(__dirname, '../preload/renderer.js')
     },
     titleBarStyle: 'hidden'
   })

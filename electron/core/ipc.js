@@ -4,8 +4,8 @@ const {
   closeWindow,
   minimizeWindow,
   maximizeWindow
-} = require('./utils')
-const { IPC_RENDERER_SIGNAL, WINDOW_SIZE } = require('./config')
+} = require('../helper/window')
+const { IPC_RENDERER_SIGNAL, WINDOW_SIZE } = require('../const/config')
 
 ipcMain.on(
   IPC_RENDERER_SIGNAL.MAXIMIZE,

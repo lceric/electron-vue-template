@@ -8,7 +8,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-var startElectron = require('./electron/handlers/startElectron')
+var startElectron = require('./electron/bin/startElectron')
 
 const port = packageJSON.development.port
 
@@ -48,7 +48,7 @@ module.exports = {
   },
   chainWebpack: config => {
     config.resolve.alias // alias
-      .set('@', resolve('electron'))
+      .set('app', resolve('electron'))
       .set('src', resolve('src'))
       .set('assets', resolve('src/assets'))
       .set('components', resolve('src/components'))

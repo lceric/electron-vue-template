@@ -40,7 +40,15 @@ electron fold：
 
 ```bash
 |-- electron
-  |-- config                              # electron mainwindow configs
+  |-- const
+    |-- config                              # electron mainwindow configs
+  |-- bin
+  |-- core
+    |-- ipc.js                            # window控制ipc
+    |-- logs.js                           # 日志设置
+    |-- update.js                         # 更新
+  |-- helper
+    |-- window.js                         # window窗口工具方法
   |-- icon
       |-- electron-vue-template.png           # app icon, config package.json
   |-- app.js                             # main window
@@ -50,21 +58,10 @@ electron fold：
 
 electron目录(暂定为electron的开发目录),electron的[官方文档](https://electronjs.org/docs/tutorial/quick-start)
 
-```bash
-|-- electron
-  |-- config                              # mainWindow
-  |-- icon
-      |-- electron-vue-template.png           # 应用icon, 可以在package.json中配置
-  |-- app.js                             # mainWindow的代码
-  ...
-
-```
 
 #### vue
 
 Same as Vue development mode
-
-vue怎么开发，这个就怎么来，如果是electron上，前往[electron文档](https://electronjs.org/docs)
 
 *****
 
@@ -167,4 +164,4 @@ show `package.json`
 
 ## License
 
-[CC0 1.0 (Public Domain)](LICENSE.md)
+[Electron CC0 1.0 (Public Domain)](LICENSE.md)
