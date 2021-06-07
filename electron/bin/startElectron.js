@@ -1,4 +1,4 @@
-var exec = require('child_process').exec
+var { spawn } = require('child_process')
 var isRendered = false
 
 function startElectron(compiler, cb) {
@@ -7,10 +7,13 @@ function startElectron(compiler, cb) {
     console.log('/-------------run electron-------------/')
     // if (process.env.NODE_ENV === 'production') return;
     if (isRendered) return
-    exec('npm run start:electron')
+    var ls = spawn('npm', ['run', 'start:electron'], { stdio: 'inherit' })
     isRendered = true
     cb && cb instanceof Function && cb()
     console.log('/-------------all of ready-------------/')
+    ls.stdout.on('data', data => {
+      console.log(`stdout: ${data}`)
+    })
   })
 }
 module.exports = startElectron
